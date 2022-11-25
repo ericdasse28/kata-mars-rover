@@ -13,4 +13,7 @@ class Rover:
         self.direction = direction
 
     def move_forward(self):
-        self.position.y += 1
+        if self.direction == "S":
+            self.position.y = -1
+        else:
+            self.position.y += 1
