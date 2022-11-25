@@ -11,6 +11,7 @@ class Point:
 class CardinalPoint(Enum):
     N = "N"
     S = "S"
+    E = "E"
 
 
 class Rover:
@@ -21,5 +22,7 @@ class Rover:
     def move_forward(self):
         if self.direction == CardinalPoint.S:
             self.position.y -= 1
+        elif self.direction == CardinalPoint.E:
+            self.position.x += 1
         else:
             self.position.y += 1
