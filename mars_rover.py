@@ -29,3 +29,7 @@ class Rover:
             self.position.x += 1
         elif self.direction == CardinalPoint.W:
             self.position.x -= 1
+
+    def move_backward(self):
+        self.position.y -= 1
+        self.direction = CardinalPoint.S
