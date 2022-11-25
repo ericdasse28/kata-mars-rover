@@ -20,6 +20,6 @@ class Rover:
 
     def move_forward(self):
         if self.direction == CardinalPoint.S:
-            self.position.y = -1
+            self.position.y -= 1
         else:
             self.position.y += 1
