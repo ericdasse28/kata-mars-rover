@@ -15,6 +15,21 @@ class CardinalPoint(Enum):
     W = "W"
 
 
+class RoverInterface:
+    def __init__(self, rover):
+        self.rover = rover
+
+    def operate(self, commands):
+        command_dictionary = {
+            "f": self.rover.move_forward,
+            "b": self.rover.move_backward,
+        }
+
+        for command in commands:
+            rover_operation = command_dictionary[command]
+            rover_operation()
+
+
 class Rover:
     def __init__(self, position, direction):
         self.position = position
