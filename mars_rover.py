@@ -16,6 +16,11 @@ class CardinalPoint(Enum):
 
 
 class RoverInterface:
+    """Interface to send commands to a Mars rover
+
+    The class constructor requires a rover
+    """
+
     def __init__(self, rover):
         self.rover = rover
 
