@@ -40,3 +40,6 @@ class Rover:
         elif self.direction == CardinalPoint.E:
             self.position.x -= 1
             self.direction = CardinalPoint.W
+        elif self.direction == CardinalPoint.W:
+            self.position.x += 1
+            self.direction = CardinalPoint.E
