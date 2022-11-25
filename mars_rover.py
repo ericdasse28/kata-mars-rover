@@ -25,6 +25,11 @@ class RoverInterface:
         self.rover = rover
 
     def operate(self, commands):
+        """Operate commands sent to the rover
+
+        Args:
+            commands (str): character array of commands
+        """
         command_dictionary = {
             "f": self.rover.move_forward,
             "b": self.rover.move_backward,
