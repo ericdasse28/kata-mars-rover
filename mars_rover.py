@@ -12,6 +12,7 @@ class CardinalPoint(Enum):
     N = "N"
     S = "S"
     E = "E"
+    W = "W"
 
 
 class Rover:
@@ -24,5 +25,7 @@ class Rover:
             self.position.y -= 1
         elif self.direction == CardinalPoint.E:
             self.position.x += 1
+        elif self.direction == CardinalPoint.W:
+            self.position.x -= 1
         else:
             self.position.y += 1
