@@ -1,5 +1,8 @@
+"""This module tests that the rover can move forward whatever the direction it is facing"""
+
 import pytest
 from mars_rover import CardinalPoint, Point, Rover
+from tests.helpers import assert_rover_state
 
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
@@ -36,9 +39,3 @@ def test_rover_can_move_forward_when_facing_west_direction(x, y):
     rover.move_forward()
 
     assert_rover_state(rover, x - 1, y, CardinalPoint.W)
-
-
-def assert_rover_state(rover, x, y, direction):
-    assert rover.position.x == x
-    assert rover.position.y == y
-    assert rover.direction == direction
