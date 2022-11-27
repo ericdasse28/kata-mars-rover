@@ -5,7 +5,7 @@ from enum import Enum
 
 
 @dataclass
-class Point:
+class Position:
     x: float
     y: float
 
