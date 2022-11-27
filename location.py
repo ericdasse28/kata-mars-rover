@@ -26,3 +26,15 @@ class CardinalPoint(Enum):
     S = "S"
     E = "E"
     W = "W"
+
+
+def cardinal_opposite(cardinal_point: CardinalPoint):
+    opposite_dictionary = {
+        CardinalPoint.N: CardinalPoint.S,
+        CardinalPoint.S: CardinalPoint.N,
+        CardinalPoint.E: CardinalPoint.W,
+        CardinalPoint.W: CardinalPoint.E,
+    }
+
+    opposite_cardinal_point = opposite_dictionary[cardinal_point]
+    return opposite_cardinal_point
