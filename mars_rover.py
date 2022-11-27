@@ -7,23 +7,21 @@ class Rover:
         self.faced_direction = faced_direction
 
     def move_forward(self):
-        self._move_towards(self.faced_direction)
+        self._move_towards_faced_direction()
 
     def move_backward(self):
-        back_direction = self.faced_direction.opposite
-
-        self.faced_direction = back_direction
-        self._move_towards(self.faced_direction)
+        self.faced_direction = self.faced_direction.opposite
+        self._move_towards_faced_direction()
 
     def turn_left(self):
         self.faced_direction = self.faced_direction.left
-        self._move_towards(self.faced_direction)
+        self._move_towards_faced_direction()
 
     def turn_right(self):
         self.faced_direction = self.faced_direction.right
-        self._move_towards(self.faced_direction)
+        self._move_towards_faced_direction()
 
-    def _move_towards(self, cardinal_point):
+    def _move_towards_faced_direction(self):
         movement_dictionary = {
             CardinalPoint.N: self.position.increment_y,
             CardinalPoint.S: self.position.decrement_y,
@@ -31,5 +29,6 @@ class Rover:
             CardinalPoint.W: self.position.decrement_x,
         }
 
-        movement = movement_dictionary[cardinal_point]
+        cardinal_point_faced = self.faced_direction
+        movement = movement_dictionary[cardinal_point_faced]
         movement()
