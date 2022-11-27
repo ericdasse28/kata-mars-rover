@@ -36,6 +36,7 @@ class CardinalPoint(Enum):
         left_dictionary = {
             CardinalPoint.S: CardinalPoint.E,
             CardinalPoint.N: CardinalPoint.W,
+            CardinalPoint.E: CardinalPoint.N,
         }
 
         left_cardinal_point = left_dictionary[self]
