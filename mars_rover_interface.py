@@ -19,6 +19,8 @@ class RoverInterface:
         command_dictionary = {
             "f": self.rover.move_forward,
             "b": self.rover.move_backward,
+            "r": self.rover.turn_right,
+            "l": self.rover.turn_left,
         }
 
         for command in commands:
