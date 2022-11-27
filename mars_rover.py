@@ -15,31 +15,6 @@ class CardinalPoint(Enum):
     W = "W"
 
 
-class RoverInterface:
-    """Interface to send commands to a Mars rover
-
-    The class constructor requires a rover
-    """
-
-    def __init__(self, rover):
-        self.rover = rover
-
-    def operate(self, commands):
-        """Operate commands sent to the rover
-
-        Args:
-            commands (str): character array of commands
-        """
-        command_dictionary = {
-            "f": self.rover.move_forward,
-            "b": self.rover.move_backward,
-        }
-
-        for command in commands:
-            rover_operation = command_dictionary[command]
-            rover_operation()
-
-
 class Rover:
     def __init__(self, position, direction):
         self.position = position

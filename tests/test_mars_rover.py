@@ -1,6 +1,7 @@
 import pytest
 
-from mars_rover import CardinalPoint, Point, Rover, RoverInterface
+from mars_rover import CardinalPoint, Point, Rover
+from mars_rover_interface import RoverInterface
 from tests.helpers import assert_rover_state
 
 
