@@ -19,6 +19,10 @@ class Rover:
         self.faced_direction = self.faced_direction.left
         self._move_towards(self.faced_direction)
 
+    def turn_right(self):
+        self.faced_direction = self.faced_direction.right
+        self._move_towards(self.faced_direction)
+
     def _move_towards(self, cardinal_point):
         movement_dictionary = {
             CardinalPoint.N: self.position.increment_y,
