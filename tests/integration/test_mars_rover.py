@@ -16,6 +16,9 @@ from tests.helpers import assert_rover_state
         ("ffffffbfbbbbffff", 0, 0, CardinalPoint.S),
         ("r", 1, 0, CardinalPoint.E),
         ("l", -1, 0, CardinalPoint.W),
+        ("lr", -1, 1, CardinalPoint.N),
+        ("fblr", 1, -1, CardinalPoint.S),
+        ("ffffffffrrrrrblfrl", -1, 5, CardinalPoint.S),
     ],
 )
 def test_mars_rover_commands(commands, new_x, new_y, new_direction):
