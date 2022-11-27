@@ -1,13 +1,24 @@
 """This module implements utilities to help handle the location functions of the Mars Rover"""
 
-from dataclasses import dataclass
 from enum import Enum
 
 
-@dataclass
 class Position:
-    x: float
-    y: float
+    def __init__(self, x: float, y: float):
+        self.x = x
+        self.y = y
+
+    def increment_y(self):
+        self.y += 1
+
+    def decrement_y(self):
+        self.y -= 1
+
+    def increment_x(self):
+        self.x += 1
+
+    def decrement_x(self):
+        self.x -= 1
 
 
 class CardinalPoint(Enum):
