@@ -1,7 +1,8 @@
 """This module tests that the rover can move forward whatever the direction it is facing"""
 
 import pytest
-from mars_rover import CardinalPoint, Point, Rover
+from location import CardinalPoint, Point
+from mars_rover import Rover
 from tests.helpers import assert_rover_state
 
 
