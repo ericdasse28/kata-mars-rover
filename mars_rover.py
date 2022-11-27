@@ -16,8 +16,12 @@ class Rover:
         self._move_towards(self.faced_direction)
 
     def turn_left(self):
-        self.faced_direction = CardinalPoint.W
-        self.position.decrement_x()
+        if self.faced_direction == CardinalPoint.S:
+            self.faced_direction = CardinalPoint.E
+            self.position.increment_x()
+        else:
+            self.faced_direction = CardinalPoint.W
+            self.position.decrement_x()
 
     def _move_towards(self, cardinal_point):
         movement_dictionary = {
