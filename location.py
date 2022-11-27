@@ -41,14 +41,18 @@ class CardinalPoint(Enum):
         left_cardinal_point = left_dictionary[self]
         return left_cardinal_point
 
+    @property
+    def opposite(self):
+        """Assuming we are facing the instance cardinal point,
+        returns the opposite cardinal point
+        """
 
-def cardinal_opposite(cardinal_point: CardinalPoint):
-    opposite_dictionary = {
-        CardinalPoint.N: CardinalPoint.S,
-        CardinalPoint.S: CardinalPoint.N,
-        CardinalPoint.E: CardinalPoint.W,
-        CardinalPoint.W: CardinalPoint.E,
-    }
+        opposite_dictionary = {
+            CardinalPoint.N: CardinalPoint.S,
+            CardinalPoint.S: CardinalPoint.N,
+            CardinalPoint.E: CardinalPoint.W,
+            CardinalPoint.W: CardinalPoint.E,
+        }
 
-    opposite_cardinal_point = opposite_dictionary[cardinal_point]
-    return opposite_cardinal_point
+        opposite_cardinal_point = opposite_dictionary[self]
+        return opposite_cardinal_point

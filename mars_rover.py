@@ -1,4 +1,4 @@
-from location import CardinalPoint, Position, cardinal_opposite
+from location import CardinalPoint, Position
 
 
 class Rover:
@@ -10,7 +10,7 @@ class Rover:
         self._move_towards(self.faced_direction)
 
     def move_backward(self):
-        back_direction = cardinal_opposite(self.faced_direction)
+        back_direction = self.faced_direction.opposite
 
         self.faced_direction = back_direction
         self._move_towards(self.faced_direction)
