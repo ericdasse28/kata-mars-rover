@@ -17,7 +17,7 @@ from tests.helpers import assert_rover_state
     ],
 )
 def test_mars_rover_commands(commands, new_x, new_y, new_direction):
-    rover = Rover(position=Position(0, 0), direction=CardinalPoint.N)
+    rover = Rover(position=Position(0, 0), faced_direction=CardinalPoint.N)
     rover_interface = RoverInterface(rover=rover)
 
     rover_interface.operate(commands)

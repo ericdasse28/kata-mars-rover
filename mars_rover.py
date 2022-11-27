@@ -1,10 +1,10 @@
-from location import CardinalPoint
+from location import CardinalPoint, Position
 
 
 class Rover:
-    def __init__(self, position, direction):
+    def __init__(self, position: Position, faced_direction: CardinalPoint):
         self.position = position
-        self.direction = direction
+        self.faced_direction = faced_direction
 
     def move_forward(self):
         if self.direction == CardinalPoint.S:

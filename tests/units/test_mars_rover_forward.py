@@ -8,7 +8,7 @@ from tests.helpers import assert_rover_state
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
 def test_rover_can_move_forward_when_facing_north_direction(x, y):
-    rover = Rover(position=Position(x, y), direction=CardinalPoint.N)
+    rover = Rover(position=Position(x, y), faced_direction=CardinalPoint.N)
 
     rover.move_forward()
 
@@ -17,7 +17,7 @@ def test_rover_can_move_forward_when_facing_north_direction(x, y):
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
 def test_rover_can_move_forward_when_facing_south_direction(x, y):
-    rover = Rover(position=Position(x, y), direction=CardinalPoint.S)
+    rover = Rover(position=Position(x, y), faced_direction=CardinalPoint.S)
 
     rover.move_forward()
 
@@ -26,7 +26,7 @@ def test_rover_can_move_forward_when_facing_south_direction(x, y):
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
 def test_rover_can_move_forward_when_facing_east_direction(x, y):
-    rover = Rover(position=Position(x, y), direction=CardinalPoint.E)
+    rover = Rover(position=Position(x, y), faced_direction=CardinalPoint.E)
 
     rover.move_forward()
 
@@ -35,7 +35,7 @@ def test_rover_can_move_forward_when_facing_east_direction(x, y):
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
 def test_rover_can_move_forward_when_facing_west_direction(x, y):
-    rover = Rover(position=Position(x, y), direction=CardinalPoint.W)
+    rover = Rover(position=Position(x, y), faced_direction=CardinalPoint.W)
 
     rover.move_forward()
 
