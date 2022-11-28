@@ -66,7 +66,9 @@ class Position:
             self.x = new_x_value
 
     def decrement_x(self):
-        self.x = self.planet.compute_x_decrement(self.x)
+        new_x_value = self.planet.compute_x_decrement(self.x)
+        if self.planet.has_no_obstacle_at(x=new_x_value, y=self.y):
+            self.x = new_x_value
 
 
 class CardinalPoint(Enum):
