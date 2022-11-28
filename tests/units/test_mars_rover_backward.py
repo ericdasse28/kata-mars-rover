@@ -1,6 +1,6 @@
 import pytest
 
-from location import CardinalPoint, Position
+from position import CardinalPoint, Position
 from rover import Rover
 from tests.helpers import assert_rover_state
 

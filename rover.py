@@ -1,4 +1,4 @@
-from location import CardinalPoint, Position
+from position import CardinalPoint, Position
 
 
 class Rover:

@@ -1,4 +1,4 @@
-from location import CardinalPoint
+from position import CardinalPoint
 from rover import Rover
 
 
