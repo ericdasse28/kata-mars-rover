@@ -1,5 +1,5 @@
 from location import CardinalPoint
-from mars_rover import Rover
+from rover import Rover
 
 
 def assert_rover_state(

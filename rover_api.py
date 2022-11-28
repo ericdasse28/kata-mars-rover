@@ -1,4 +1,4 @@
-from mars_rover import Rover
+from rover import Rover
 
 
 class RoverAPI:
