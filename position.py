@@ -61,7 +61,9 @@ class Position:
             self.y = new_y_value
 
     def increment_x(self):
-        self.x = self.planet.compute_x_increment(self.x)
+        new_x_value = self.planet.compute_x_increment(self.x)
+        if self.planet.has_no_obstacle_at(x=new_x_value, y=self.y):
+            self.x = new_x_value
 
     def decrement_x(self):
         self.x = self.planet.compute_x_decrement(self.x)
