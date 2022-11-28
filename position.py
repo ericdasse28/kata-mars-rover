@@ -13,6 +13,7 @@ class Planet:
         if radius is None:
             radius = mars.RADIUS
         self.radius = radius
+        self.obstacles_coordinates = []
 
     def compute_y_increment(self, y_value):
         if y_value == self.radius:
@@ -33,6 +34,9 @@ class Planet:
         if x_value == -self.radius:
             return -x_value
         return x_value - 1
+
+    def add_obstacle(self, x, y):
+        self.obstacles_coordinates.append((x, y))
 
 
 class Position:
