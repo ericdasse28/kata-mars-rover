@@ -3,8 +3,8 @@
 import mars
 import pytest
 
-from location import CardinalPoint, Position
-from mars_rover import Rover
+from position import CardinalPoint, Position
+from rover import Rover
 from tests.helpers import assert_rover_state
 
 
