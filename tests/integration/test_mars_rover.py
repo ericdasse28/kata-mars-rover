@@ -2,7 +2,7 @@ import pytest
 
 from location import CardinalPoint, Position
 from mars_rover import Rover
-from mars_rover_interface import RoverAPI
+from rover_api import RoverAPI
 from tests.helpers import assert_rover_state
 
 
