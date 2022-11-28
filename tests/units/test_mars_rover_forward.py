@@ -103,3 +103,28 @@ def test_rover_doesnt_move_forward_when_there_is_an_obstacle_infront_of_it_while
     rover.move_forward()
 
     assert_rover_state(rover, rover_x, rover_y, CardinalPoint.N)
+
+
+@pytest.mark.parametrize(
+    "obstacle_x,obstacle_y,rover_x,rover_y",
+    [
+        (0, -1, 0, 0),
+        (0, 0, 0, 1),
+        (6, 3, 6, 4),
+        (8, 4, 8, 5),
+    ],
+)
+def test_rover_doesnt_move_forward_when_there_is_an_obstacle_infront_of_it_while_facing_south(
+    obstacle_x, obstacle_y, rover_x, rover_y
+):
+    mars = Planet()
+    mars.add_obstacle(obstacle_x, obstacle_y)
+    rover = Rover(
+        position=Position(rover_x, rover_y, planet=mars),
+        faced_direction=CardinalPoint.S,
+    )
+
+    rover.move_forward()
+
+    assert_rover_state(rover, rover_x, rover_y, CardinalPoint.S)
+
