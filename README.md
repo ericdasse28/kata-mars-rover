@@ -18,4 +18,9 @@ the kata as stated on the aforementioned link), I made some assumptions
 decrementing the corresponding axis (Ex. Moving towards the north increments the y value by 1, moving towards the west decrements the x value by 1)
 2. Moving backward consist in first facing the opposite direction and then moving towards that direction while incrementing or decrementing the corresponding axis value
 3. Turning right simply consists in facing the direction on the right of the currently faced direction
-4. Turning left is analogous to turning left
+4. Turning left is analogous to turning right
+
+### Surface assumptions
+1. The rover moves on a square
+2. When the rover reaches an edge, and tries to go further, it appears on the other side of the square
+while facing the same direction
