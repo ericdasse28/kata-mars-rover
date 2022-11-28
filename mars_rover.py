@@ -15,11 +15,9 @@ class Rover:
 
     def turn_left(self):
         self.faced_direction = self.faced_direction.left
-        self._move_towards_faced_direction()
 
     def turn_right(self):
         self.faced_direction = self.faced_direction.right
-        self._move_towards_faced_direction()
 
     def _move_towards_faced_direction(self):
         movement_dictionary = {

@@ -17,5 +17,5 @@ the kata as stated on the aforementioned link), I made some assumptions
 1. Moving forward is going towards the direction we are facing while incrementing or
 decrementing the corresponding axis (Ex. Moving towards the north increments the y value by 1, moving towards the west decrements the x value by 1)
 2. Moving backward consist in first facing the opposite direction and then moving towards that direction while incrementing or decrementing the corresponding axis value
-3. Turning right consists in first facing the direction on the right of the currently faced direction and then incrementing or decrementing the corresponding axis value
+3. Turning right simply consists in facing the direction on the right of the currently faced direction
 4. Turning left is analogous to turning left

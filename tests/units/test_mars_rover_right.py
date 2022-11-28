@@ -11,7 +11,7 @@ def test_rover_can_turn_right_when_facing_north_direction(x, y):
 
     rover.turn_right()
 
-    assert_rover_state(rover, x + 1, y, CardinalPoint.E)
+    assert_rover_state(rover, x, y, CardinalPoint.E)
 
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
@@ -20,7 +20,7 @@ def test_rover_can_turn_right_when_facing_south_direction(x, y):
 
     rover.turn_right()
 
-    assert_rover_state(rover, x - 1, y, CardinalPoint.W)
+    assert_rover_state(rover, x, y, CardinalPoint.W)
 
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
@@ -29,7 +29,7 @@ def test_rover_can_turn_right_when_facing_east_direction(x, y):
 
     rover.turn_right()
 
-    assert_rover_state(rover, x, y - 1, CardinalPoint.S)
+    assert_rover_state(rover, x, y, CardinalPoint.S)
 
 
 @pytest.mark.parametrize("x,y", [(0, 0), (0, 1), (3, 2), (6, 4)])
@@ -38,4 +38,4 @@ def test_rover_can_turn_right_when_facing_west_direction(x, y):
 
     rover.turn_right()
 
-    assert_rover_state(rover, x, y + 1, CardinalPoint.N)
+    assert_rover_state(rover, x, y, CardinalPoint.N)
