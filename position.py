@@ -38,6 +38,9 @@ class Planet:
     def add_obstacle(self, x, y):
         self.obstacles_coordinates.append((x, y))
 
+    def has_no_obstacle_at(self, x, y):
+        return (x, y) not in self.obstacles_coordinates
+
 
 class Position:
     def __init__(self, x: float, y: float, planet: Planet = None):
@@ -48,7 +51,9 @@ class Position:
         self.planet = planet
 
     def increment_y(self):
-        self.y = self.planet.compute_y_increment(self.y)
+        new_y_value = self.planet.compute_y_increment(self.y)
+        if self.planet.has_no_obstacle_at(x=self.x, y=new_y_value):
+            self.y = new_y_value
 
     def decrement_y(self):
         self.y = self.planet.compute_y_decrement(self.y)
