@@ -1,7 +1,7 @@
 from rover import Rover
 
 
-class RoverAPI:
+class RoverCommands:
     """Interface to send commands to a Mars rover
 
     The class constructor requires a rover

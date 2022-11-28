@@ -2,7 +2,7 @@ import pytest
 
 from position import CardinalPoint, Position
 from rover import Rover
-from rover_api import RoverAPI
+from rover_commands import RoverCommands
 from tests.helpers import assert_rover_state
 
 
@@ -23,7 +23,7 @@ from tests.helpers import assert_rover_state
 )
 def test_mars_rover_commands(commands, new_x, new_y, new_direction):
     rover = Rover(position=Position(0, 0), faced_direction=CardinalPoint.N)
-    rover_interface = RoverAPI(rover=rover)
+    rover_interface = RoverCommands(rover=rover)
 
     rover_interface.operate(commands)
 
