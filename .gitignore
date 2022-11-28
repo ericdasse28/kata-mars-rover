@@ -1,5 +1,6 @@
 # Environment
 .venv
+.vscode
 
 # Caches
 __pycache__
