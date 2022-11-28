@@ -1,4 +1,5 @@
 """This module implements utilities to help handle the location functions of the Mars Rover"""
+import mars
 
 from enum import Enum
 
@@ -9,16 +10,16 @@ class Position:
         self.y = y
 
     def increment_y(self):
-        self.y += 1
+        self.y = -self.y if self.y == mars.RADIUS else self.y + 1
 
     def decrement_y(self):
-        self.y -= 1
+        self.y = -self.y if self.y == -mars.RADIUS else self.y - 1
 
     def increment_x(self):
-        self.x += 1
+        self.x = -self.x if self.x == mars.RADIUS else self.x + 1
 
     def decrement_x(self):
-        self.x -= 1
+        self.x = -self.x if self.x == -mars.RADIUS else self.x - 1
 
 
 class CardinalPoint(Enum):

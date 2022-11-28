@@ -1,6 +1,8 @@
 """This module tests that the rover can move forward whatever the direction it is facing"""
 
+import mars
 import pytest
+
 from location import CardinalPoint, Position
 from mars_rover import Rover
 from tests.helpers import assert_rover_state
@@ -40,3 +42,41 @@ def test_rover_can_move_forward_when_facing_west_direction(x, y):
     rover.move_forward()
 
     assert_rover_state(rover, x - 1, y, CardinalPoint.W)
+
+
+@pytest.mark.parametrize(
+    "initial_x,initial_y,direction,expected_x,expected_y",
+    [
+        (0, 3300000, CardinalPoint.N, 0, -3300000),
+        (0, -3300000, CardinalPoint.S, 0, 3300000),
+        (3300000, 0, CardinalPoint.E, -3300000, 0),
+        (-3300000, 0, CardinalPoint.W, 3300000, 0),
+    ],
+)
+def test_rover_wraps_when_reaching_planet_edge_while_moving_forward(
+    initial_x, initial_y, direction, expected_x, expected_y
+):
+    rover = Rover(position=Position(initial_x, initial_y), faced_direction=direction)
+
+    rover.move_forward()
+
+    assert_rover_state(rover, expected_x, expected_y, direction)
+
+
+@pytest.mark.parametrize(
+    "initial_x,initial_y,direction,expected_x,expected_y",
+    [
+        (0, 3300000, CardinalPoint.S, 0, 3299999),
+        (0, -3300000, CardinalPoint.N, 0, -3299999),
+        (3300000, 0, CardinalPoint.W, 3299999, 0),
+        (-3300000, 0, CardinalPoint.E, -3299999, 0),
+    ],
+)
+def test_rover_doesnt_wrap_when_reaching_planet_edge_while_moving_forward_in_a_different_direction(
+    initial_x, initial_y, direction, expected_x, expected_y
+):
+    rover = Rover(position=Position(initial_x, initial_y), faced_direction=direction)
+
+    rover.move_forward()
+
+    assert_rover_state(rover, expected_x, expected_y, direction)
