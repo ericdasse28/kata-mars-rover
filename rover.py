@@ -5,6 +5,7 @@ class Rover:
     def __init__(self, position: Position, faced_direction: CardinalPoint):
         self.position = position
         self.faced_direction = faced_direction
+        self.last_avoided_obstacle = None
 
     def move_forward(self):
         self._move_towards_faced_direction()
@@ -32,3 +33,5 @@ class Rover:
 
         if potential_new_position.has_no_obstacle():
             self.position = potential_new_position
+        else:
+            self.last_avoided_obstacle = potential_new_position

@@ -24,3 +24,7 @@ decrementing the corresponding axis (Ex. Moving towards the north increments the
 1. The rover moves on a square
 2. When the rover reaches an edge, and tries to go further, it appears on the other side of the square
 while facing the same direction
+
+
+### Obstacle assumptions
+The rover doesn't move any further when it meets an obstacle

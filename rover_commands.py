@@ -9,6 +9,7 @@ class RoverCommands:
 
     def __init__(self, rover: Rover):
         self.rover = rover
+        self.reported_messages = []
 
     def operate(self, commands: str):
         """Operate commands sent to the rover
@@ -34,4 +35,10 @@ class RoverCommands:
                 self.rover.position == former_rover_position
                 and self.rover.faced_direction == former_faced_direction
             ):
+                obstacle_position = self.rover.last_avoided_obstacle
+                report_message = f"Obstacle detected at {obstacle_position}"
+                self.reported_messages.append(report_message)
                 break
+
+    def last_reported_message(self):
+        return self.reported_messages[-1]
