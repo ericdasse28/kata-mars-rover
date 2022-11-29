@@ -1,8 +1,8 @@
 import pytest
 
-from position import CardinalPoint, Position
+from position import CardinalPoint, Planet, Position
 from rover import Rover
-from rover_api import RoverAPI
+from rover_commands import RoverCommands
 from tests.helpers import assert_rover_state
 
 
@@ -23,8 +23,69 @@ from tests.helpers import assert_rover_state
 )
 def test_mars_rover_commands(commands, new_x, new_y, new_direction):
     rover = Rover(position=Position(0, 0), faced_direction=CardinalPoint.N)
-    rover_interface = RoverAPI(rover=rover)
+    rover_commands = RoverCommands(rover=rover)
 
-    rover_interface.operate(commands)
+    rover_commands.operate(commands)
 
     assert_rover_state(rover, new_x, new_y, new_direction)
+
+
+@pytest.mark.parametrize(
+    "obstacle_x,obstacle_y,command,initial_x,initial_y,initial_direction,expected_x,expected_y,expected_direction",
+    [
+        (1, 3, "fffrfbffffffffff", 0, 0, CardinalPoint.N, 0, 3, CardinalPoint.E),
+        (3, 8, "fffrfbffffffffff", 2, 5, CardinalPoint.N, 2, 8, CardinalPoint.E),
+        (1, 8, "ffflfbffffffffff", 2, 5, CardinalPoint.N, 2, 8, CardinalPoint.W),
+        (2, 9, "brlfffflrffffffff", 2, 5, CardinalPoint.S, 2, 8, CardinalPoint.N),
+    ],
+)
+def test_mars_rover_moves_aborts_the_sequence_after_moving_to_last_possible_point_when_it_meets_an_obstacle(
+    obstacle_x,
+    obstacle_y,
+    command,
+    initial_x,
+    initial_y,
+    initial_direction,
+    expected_x,
+    expected_y,
+    expected_direction,
+):
+    mars = Planet()
+    mars.add_obstacle(obstacle_x, obstacle_y)
+    rover = Rover(
+        position=Position(initial_x, initial_y, planet=mars),
+        faced_direction=initial_direction,
+    )
+    rover_commands = RoverCommands(rover=rover)
+
+    rover_commands.operate(command)
+
+    assert_rover_state(rover, expected_x, expected_y, expected_direction)
+
+
+@pytest.mark.parametrize(
+    "obstacle_x,obstacle_y,command,rover_x,rover_y,rover_direction",
+    [
+        (1, 3, "fffrfbffffffffff", 0, 0, CardinalPoint.N),
+        (3, 8, "fffrfbffffffffff", 2, 5, CardinalPoint.N),
+        (1, 8, "ffflfbffffffffff", 2, 5, CardinalPoint.N),
+        (2, 9, "brlfffflrffffffff", 2, 5, CardinalPoint.S),
+    ],
+)
+def test_mars_rover_reports_the_obstacle_when_meeting_it(
+    obstacle_x, obstacle_y, command, rover_x, rover_y, rover_direction
+):
+    mars = Planet()
+    mars.add_obstacle(obstacle_x, obstacle_y)
+    rover = Rover(
+        position=Position(rover_x, rover_y, planet=mars),
+        faced_direction=rover_direction,
+    )
+    rover_commands = RoverCommands(rover=rover)
+
+    rover_commands.operate(command)
+
+    assert (
+        rover_commands.last_reported_message()
+        == f"Obstacle detected at ({obstacle_x}, {obstacle_y})"
+    )

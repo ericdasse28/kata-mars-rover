@@ -4,22 +4,77 @@ import mars
 from enum import Enum
 
 
+class Planet:
+    """Represents the planet on which the rover is moving.
+    Default to Mars."""
+
+    def __init__(self, name="Mars", radius=None):
+        self.name = name
+        if radius is None:
+            radius = mars.RADIUS
+        self.radius = radius
+        self.obstacles_coordinates = []
+
+    def compute_y_increment(self, y_value):
+        if y_value == self.radius:
+            return -y_value
+        return y_value + 1
+
+    def compute_y_decrement(self, y_value):
+        if y_value == -self.radius:
+            return -y_value
+        return y_value - 1
+
+    def compute_x_increment(self, x_value):
+        if x_value == self.radius:
+            return -x_value
+        return x_value + 1
+
+    def compute_x_decrement(self, x_value):
+        if x_value == -self.radius:
+            return -x_value
+        return x_value - 1
+
+    def add_obstacle(self, x, y):
+        self.obstacles_coordinates.append((x, y))
+
+
 class Position:
-    def __init__(self, x: float, y: float):
+    def __init__(self, x: float, y: float, planet: Planet = None):
         self.x = x
         self.y = y
+        if planet is None:
+            planet = Planet()
+        self.planet = planet
 
     def increment_y(self):
-        self.y = -self.y if self.y == mars.RADIUS else self.y + 1
+        return Position(
+            x=self.x, y=self.planet.compute_y_increment(self.y), planet=self.planet
+        )
 
     def decrement_y(self):
-        self.y = -self.y if self.y == -mars.RADIUS else self.y - 1
+        return Position(
+            x=self.x, y=self.planet.compute_y_decrement(self.y), planet=self.planet
+        )
 
     def increment_x(self):
-        self.x = -self.x if self.x == mars.RADIUS else self.x + 1
+        return Position(
+            x=self.planet.compute_x_increment(self.x), y=self.y, planet=self.planet
+        )
 
     def decrement_x(self):
-        self.x = -self.x if self.x == -mars.RADIUS else self.x - 1
+        return Position(
+            x=self.planet.compute_x_decrement(self.x), y=self.y, planet=self.planet
+        )
+
+    def has_no_obstacle(self):
+        return (self.x, self.y) not in self.planet.obstacles_coordinates
+
+    def __eq__(self, __o: object) -> bool:
+        return self.x == __o.x and self.y == __o.y
+
+    def __str__(self) -> str:
+        return f"({self.x}, {self.y})"
 
 
 class CardinalPoint(Enum):
