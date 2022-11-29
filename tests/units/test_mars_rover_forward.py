@@ -177,4 +177,25 @@ def test_rover_doesnt_move_forward_when_there_is_an_obstacle_infront_of_it_while
     assert_rover_state(rover, rover_x, rover_y, CardinalPoint.W)
 
 
-# TODO: Test that the rover doesn't wrap when there is an obstacle at the wrap point
+@pytest.mark.parametrize(
+    "initial_rover_x,initial_rover_y,direction,obstacle_x,obstacle_y",
+    [
+        (0, 3300000, CardinalPoint.N, 0, -3300000),
+        (0, -3300000, CardinalPoint.S, 0, 3300000),
+        (3300000, 0, CardinalPoint.E, -3300000, 0),
+        (-3300000, 0, CardinalPoint.W, 3300000, 0),
+    ],
+)
+def test_rover_doesnt_wrap_when_moving_forward_while_there_is_an_obstacle_at_the_next_position(
+    initial_rover_x, initial_rover_y, direction, obstacle_x, obstacle_y
+):
+    mars = Planet()
+    mars.add_obstacle(obstacle_x, obstacle_y)
+    rover = Rover(
+        position=Position(initial_rover_x, initial_rover_y, planet=mars),
+        faced_direction=direction,
+    )
+
+    rover.move_forward()
+
+    assert_rover_state(rover, initial_rover_x, initial_rover_y, direction)
