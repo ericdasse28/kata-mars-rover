@@ -177,3 +177,4 @@ def test_rover_doesnt_move_forward_when_there_is_an_obstacle_infront_of_it_while
     assert_rover_state(rover, rover_x, rover_y, CardinalPoint.W)
 
 
+# TODO: Test that the rover doesn't wrap when there is an obstacle at the wrap point

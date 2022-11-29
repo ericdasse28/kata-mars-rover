@@ -38,9 +38,6 @@ class Planet:
     def add_obstacle(self, x, y):
         self.obstacles_coordinates.append((x, y))
 
-    def has_no_obstacle_at(self, x, y):
-        return (x, y) not in self.obstacles_coordinates
-
 
 class Position:
     def __init__(self, x: float, y: float, planet: Planet = None):
@@ -51,24 +48,27 @@ class Position:
         self.planet = planet
 
     def increment_y(self):
-        new_y_value = self.planet.compute_y_increment(self.y)
-        if self.planet.has_no_obstacle_at(x=self.x, y=new_y_value):
-            self.y = new_y_value
+        return Position(
+            x=self.x, y=self.planet.compute_y_increment(self.y), planet=self.planet
+        )
 
     def decrement_y(self):
-        new_y_value = self.planet.compute_y_decrement(self.y)
-        if self.planet.has_no_obstacle_at(x=self.x, y=new_y_value):
-            self.y = new_y_value
+        return Position(
+            x=self.x, y=self.planet.compute_y_decrement(self.y), planet=self.planet
+        )
 
     def increment_x(self):
-        new_x_value = self.planet.compute_x_increment(self.x)
-        if self.planet.has_no_obstacle_at(x=new_x_value, y=self.y):
-            self.x = new_x_value
+        return Position(
+            x=self.planet.compute_x_increment(self.x), y=self.y, planet=self.planet
+        )
 
     def decrement_x(self):
-        new_x_value = self.planet.compute_x_decrement(self.x)
-        if self.planet.has_no_obstacle_at(x=new_x_value, y=self.y):
-            self.x = new_x_value
+        return Position(
+            x=self.planet.compute_x_decrement(self.x), y=self.y, planet=self.planet
+        )
+
+    def has_no_obstacle(self):
+        return (self.x, self.y) not in self.planet.obstacles_coordinates
 
 
 class CardinalPoint(Enum):
