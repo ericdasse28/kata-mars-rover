@@ -25,4 +25,13 @@ class RoverCommands:
 
         for command in commands:
             rover_operation = command_dictionary[command]
+            former_rover_position = self.rover.position
+            former_faced_direction = self.rover.faced_direction
+
             rover_operation()
+
+            if (
+                self.rover.position == former_rover_position
+                and self.rover.faced_direction == former_faced_direction
+            ):
+                break

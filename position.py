@@ -70,6 +70,9 @@ class Position:
     def has_no_obstacle(self):
         return (self.x, self.y) not in self.planet.obstacles_coordinates
 
+    def __eq__(self, __o: object) -> bool:
+        return self.x == __o.x and self.y == __o.y
+
 
 class CardinalPoint(Enum):
     N = "N"
